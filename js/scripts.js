@@ -9,21 +9,23 @@ function AddressBook() {
 // function AllAddresses() {
   //   this.allAddresses = []
   // }
+// var inputtedPhysicalAddress = "Ugh!"
 
 
+  // AddressBook.prototype.addAddress = function(inputtedPhysicalAddress) {
+  //   return {
+  //     physicalAddress : inputtedPhysicalAddress,
+  //     mailingAddress : "mTest"
+  //   }
+  // }
 
   AddressBook.prototype.addContact = function(contact) {
     contact.id = this.assignId();
-    contact.allAddresses = this.addAddress();
     this.contacts.push(contact);
+    // contact.allAddresses = this.addAddress(contact.allAddresses.physicalAddress);
+    // console.log(contact);
   }
 
-  AddressBook.prototype.addAddress = function() {
-    return {
-      physicalAddress : "pTest",
-      mailingAddress : "mTest"
-      }
-  }
 
   AddressBook.prototype.assignId = function() {
     this.currentId += 1;
@@ -54,12 +56,13 @@ function AddressBook() {
   }
 
   // Business Logic for Contacts ---------
-  function Contact(firstName, lastName, phoneNumber, inputtedEMailAddress, allAddresses) {
+  function Contact(firstName, lastName, phoneNumber, inputtedEMailAddress, inputtedPhysicalAddress) {
     this.firstName = firstName,
     this.lastName = lastName,
     this.phoneNumber = phoneNumber,
-    this.inputtedEMailAddress = inputtedEMailAddress,
-    this.allAddresses = allAddresses
+    this.eMailAddress = inputtedEMailAddress,
+    this.allAddresses = {other: inputtedPhysicalAddress}
+
   }
 
   // function Address(inputtedPhysicalAddress, mailingAddress, workAddress) {
@@ -126,8 +129,9 @@ function AddressBook() {
         $("input#new-phone-number").val("");
         $("input#new-e-mail-address").val("");
         $("input#new-physical-address").val("");
-        var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEMailAddress);
+        var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEMailAddress, inputtedPhysicalAddress);
         addressBook.addContact(newContact);
+
 
         // ALL ADDRESSES
         // var newAddress = new Address(inputtedPhysicalAddress);
